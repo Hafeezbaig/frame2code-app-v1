@@ -12,6 +12,8 @@ import {
 
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
+import { FiLogOut } from "react-icons/fi"; // Import logout icon
+
 
 function ProfileAvatar() {
 
@@ -31,7 +33,7 @@ function ProfileAvatar() {
                 <PopoverTrigger>
                     {user?.user?.photoURL && <img src={user?.user?.photoURL} alt='profile' className='w-[35px] h-[35px] rounded-full' />}
                 </PopoverTrigger>
-                <PopoverContent className='w-[100px] mx-w-sm'>
+                <PopoverContent className='w-[100px] mx-w-sm pl-2'>
                     <Button variant={'ghost'} onClick={onButtonPress} className=''>Logout</Button>
                 </PopoverContent>
             </Popover>
