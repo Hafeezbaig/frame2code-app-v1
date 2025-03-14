@@ -50,9 +50,9 @@ export function AppSidebar() {
         <Sidebar>
             <SidebarHeader>
                 <div className='p-4'>
-                    <Image src={'./logo.svg'} alt='logo' width={100} height={100}
+                    <Image src={'./logo2.svg'} alt='logo' width={120} height={120}
                         className='w-full h-full' />
-                    <h2 className='text-sm text-gray-400 text-center'>Build Awesome</h2>
+                    <h2 className='text-sm text-gray-400 text-center'>Build & Deploy</h2>
                 </div>
             </SidebarHeader>
             <SidebarContent>
@@ -79,7 +79,7 @@ export function AppSidebar() {
                 </SidebarGroup>
             </SidebarContent>
             <SidebarFooter>
-                <h2 className='p-2 text-gray-400 text-sm'>Release v1.1.0</h2>
+                <h2 className='p-2 text-gray-400 text-sm'>Release v1.0</h2>
             </SidebarFooter>
         </Sidebar>
     )

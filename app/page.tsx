@@ -36,8 +36,8 @@ export default function Home() {
     <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors">
       {/* Header */}
       <header className="w-full bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 py-4 px-6 flex justify-between items-center shadow-md">
-        <Link href="/" className="flex items-center">
-          <Image src="/logo.svg" alt="Frame2Code" width={140} height={40} />
+        <Link href="/" className="flex items-center ml-[-30px] mt-2">
+          <Image src="/logo2.svg" alt="Frame2Code" width={200} height={40} />
         </Link>
 
         <div className="flex items-center gap-4">
