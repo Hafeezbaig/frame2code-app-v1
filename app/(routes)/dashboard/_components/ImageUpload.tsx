@@ -2,31 +2,31 @@
 
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
-import { CloudUploadIcon, WandSparkles, X } from 'lucide-react'
+import { CloudUploadIcon, Loader2Icon, WandSparkles, X } from 'lucide-react'
 import Image from 'next/image'
 import React, { ChangeEvent, useState } from 'react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { storage } from '@/configs/firebaseConfig'
-// import uuid4 from 'uuid4';
 import axios from 'axios'
 import { v4 as uuid4 } from 'uuid'
 import { useAuthContext } from '@/app/provider'
+import { useRouter } from 'next/navigation'
 
 function ImageUpload() {
 
-    const AiModelList=[
+    const AiModelList = [
         {
-            name:'Gemini Google',
+            name: 'Gemini Google',
             icon: '/google.png'
         },
         {
-            name:'llama By Meta',
-            icon:'/meta.png'
+            name: 'llama By Meta',
+            icon: '/meta.png'
         },
         {
-            name:'Deepseek',
-            icon:'/deepseek.png'
+            name: 'Deepseek',
+            icon: '/deepseek.png'
         },
     ]
 
@@ -36,7 +36,9 @@ function ImageUpload() {
 
     const [model, setModel] = useState<string>();
     const [description, setDescription] = useState<string>();
-    const {user}=useAuthContext();
+    const { user } = useAuthContext();
+    const router = useRouter();
+    const [loading, setLoading] = useState(false);
     const OnImageSelect = (event: ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
         if (files) {
@@ -47,36 +49,39 @@ function ImageUpload() {
         }
     }
 
-    const OnConvertToCodeButtonClick=async()=>{
-        if(!file||!model||!description){
+    const OnConvertToCodeButtonClick = async () => {
+        if (!file || !model || !description) {
             console.log('Please fill all the fields');
             return;
         }
+        setLoading(true);
         // save image to firebase storage
 
-        const fileName=Date.now()+'.png';
-        const imageRef=ref(storage,"Wireframe_To_Code_Project/"+fileName);
-        await uploadBytes(imageRef,file).then(resp=>{
+        const fileName = Date.now() + '.png';
+        const imageRef = ref(storage, "Wireframe_To_Code_Project/" + fileName);
+        await uploadBytes(imageRef, file).then(resp => {
             console.log('Image Uploaded Successfully')
         });
-        const imageUrl=await getDownloadURL(imageRef);
+        const imageUrl = await getDownloadURL(imageRef);
         console.log(imageUrl);
 
         // generate uid
 
-        const uid=uuid4();
+        const uid = uuid4();
 
 
         // save info to database
 
-        const result=await axios.post('/api/wireframe-to-code',{
-            uid:uid,
-            description:description,
-            imageUrl:imageUrl,
-            model:model,
-            email:user?.email
+        const result = await axios.post('/api/wireframe-to-code', {
+            uid: uid,
+            description: description,
+            imageUrl: imageUrl,
+            model: model,
+            email: user?.email
         });
         console.log(result.data);
+        setLoading(false);
+        router.push('/view-code/' + uid);
     }
 
 
@@ -117,33 +122,35 @@ function ImageUpload() {
                 <div className='p-7 border shadow-md rounded-lg'>
 
                     <h2 className='font-bold text-lg'>Select AI Model</h2>
-                    <Select onValueChange={(value)=>setModel(value)}>
-  <SelectTrigger className="w-full">
-    <SelectValue placeholder="Select AI Model" />
-  </SelectTrigger>
-  <SelectContent>
-    {AiModelList.map((model, index) => (
-      <SelectItem key={model.name || index} value={model.name}> {/* Add key here */}
-        <div className="flex items-center gap-2">
-          <Image src={model.icon} alt={model.name} width={25} height={25} />
-          <h2>{model.name}</h2>
-        </div>
-      </SelectItem>
-    ))}
-  </SelectContent>
-</Select>
+                    <Select onValueChange={(value) => setModel(value)}>
+                        <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select AI Model" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {AiModelList.map((model, index) => (
+                                <SelectItem key={model.name || index} value={model.name}> {/* Add key here */}
+                                    <div className="flex items-center gap-2">
+                                        <Image src={model.icon} alt={model.name} width={25} height={25} />
+                                        <h2>{model.name}</h2>
+                                    </div>
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
 
 
 
 
                     <h2 className='font-bold text-lg mt-7'>Enter Description about your web page</h2>
-                    <Textarea 
-                    onChange={(event)=>setDescription(event?.target.value)}
-                    className='mt-3 h-[200px]' placeholder='Write about your web page' />
+                    <Textarea
+                        onChange={(event) => setDescription(event?.target.value)}
+                        className='mt-3 h-[200px]' placeholder='Write about your web page' />
                 </div>
             </div>
             <div className='mt-10 flex items-center justify-center font-bold '>
-                <Button className='bg-blue-600 hover:bg-blue-700 text-white' onClick={OnConvertToCodeButtonClick}> <WandSparkles /> Convert to Code</Button>
+                <Button className='bg-blue-600 hover:bg-blue-700 text-white' onClick={OnConvertToCodeButtonClick} disabled={loading}>
+                    {loading ? <Loader2Icon className='animate-spin' /> : <WandSparkles />}
+                    Convert to Code</Button>
             </div>
         </div>
     )
