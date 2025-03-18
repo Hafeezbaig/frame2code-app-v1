@@ -12,23 +12,9 @@ import axios from 'axios'
 import { v4 as uuid4 } from 'uuid'
 import { useAuthContext } from '@/app/provider'
 import { useRouter } from 'next/navigation'
+import Constants from '@/data/Constants'
 
 function ImageUpload() {
-
-    const AiModelList = [
-        {
-            name: 'Gemini Google',
-            icon: '/google.png'
-        },
-        {
-            name: 'llama By Meta',
-            icon: '/meta.png'
-        },
-        {
-            name: 'Deepseek',
-            icon: '/deepseek.png'
-        },
-    ]
 
     const [previewUrl, setPreviewUrl] = useState<string | null>(null)
 
@@ -127,7 +113,7 @@ function ImageUpload() {
                             <SelectValue placeholder="Select AI Model" />
                         </SelectTrigger>
                         <SelectContent>
-                            {AiModelList.map((model, index) => (
+                            {Constants.AiModelList.map((model, index) => (
                                 <SelectItem key={model.name || index} value={model.name}> {/* Add key here */}
                                     <div className="flex items-center gap-2">
                                         <Image src={model.icon} alt={model.name} width={25} height={25} />
