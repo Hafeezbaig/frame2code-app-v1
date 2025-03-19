@@ -19,6 +19,7 @@ function ViewCode() {
 
     const {uid}=useParams();
     const [loading, setLoading] = useState(false);
+    const [codeResp, setCodeResp] = useState('');
 
     useEffect(()=>{
         uid && GetRecordInfo();
@@ -67,7 +68,8 @@ function ViewCode() {
                 break;
             }
             
-            const text = (decoder.decode(value));
+            const text = (decoder.decode(value)).replace('```typescript', '').replace('```', '');
+            setCodeResp((prev)=>prev+text);
             console.log(text);
         }
         setLoading(false);
@@ -77,6 +79,7 @@ function ViewCode() {
   return (
     <div>ViewCode
         {loading && <LoaderCircle className='animate-spin' />}
+        <p>{codeResp}</p>
     </div>
   )
 }
