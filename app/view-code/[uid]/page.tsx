@@ -1,5 +1,6 @@
 "use client"
 
+import Constants from '@/data/Constants';
 import axios from 'axios'
 import { LoaderCircle } from 'lucide-react';
 import { useParams } from 'next/navigation';
@@ -47,7 +48,7 @@ function ViewCode() {
             },
             body: JSON.stringify({
                 model: record?.model,
-                description: record?.description,
+                description: record?.description+":"+Constants.PROMPT,
                 imageUrl: record?.imageUrl
             }),
         });
