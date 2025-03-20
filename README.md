@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frame2Code - AI-Powered Wireframe to Code Converter
 
-## Getting Started
+Frame2Code is an AI-powered tool that converts hand-drawn or digital wireframes into clean, responsive front-end code within seconds. Designed for developers and designers, it automates the UI development process, saving hours of manual coding.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Convert wireframes into high-quality front-end code
+- Supports AI-generated HTML, CSS, and JavaScript
+- Integrated authentication for secure access
+- Fully responsive design with Tailwind CSS
+- AI model selection for optimized results
+- Firebase storage integration for image uploads
+- Code editor with real-time preview using Sandpack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Frontend: Next.js, TypeScript, Tailwind CSS, Framer Motion
+- Backend: Firebase, Drizzle ORM
+- Authentication: Firebase Auth
+- AI Models: Google Gemini, Meta Llama, DeepSeek
+- Hosting: Vercel
+- Storage: Firebase Storage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Authentication and Protected Routes
 
-## Learn More
+- Dashboard and View Code pages are protected and require authentication.
+- Users must sign in before accessing AI-generated code.  
 
-To learn more about Next.js, take a look at the following resources:
+## Author
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Developed and maintained by Hafeez Baig  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Website: https://hafeezbaig.in  
+LinkedIn: https://linkedin.com/in/hafeezbaig25  
+GitHub: https://github.com/hafeezbaig  
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is licensed under the MIT License.  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Check More about the License Here - https://www.hafeezbaig.in/docs/MITLicense
+
+Made by Hafeez Baig  
+Frame2Code - AI-Powered Wireframe to Code Generator  
