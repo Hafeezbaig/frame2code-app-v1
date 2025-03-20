@@ -11,7 +11,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Calendar, CircleDollarSign, HelpCircle, Home, Inbox, Search, Settings } from "lucide-react"
+import { Calendar, CircleDollarSign, HelpCircle, Home, Inbox, Search, Settings, Github, Link, Bug, ImageIcon } from "lucide-react"
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
@@ -22,24 +22,24 @@ const items = [
         icon: Home,
     },
     {
-        title: "Design",
-        url: "/design",
-        icon: Inbox,
+        title: "Github Code",
+        url: "https://github.com/Hafeezbaig/frame2code-app-v1",
+        icon: Github,
     },
     {
-        title: "Credits",
-        url: "/credits",
-        icon: CircleDollarSign,
+        title: "Portfolio",
+        url: "https://hafeezbaig.in",
+        icon: Link,
     },
     {
-        title: "Help",
-        url: "/Help",
-        icon: HelpCircle,
+        title: "Bugs Report / Feedback",
+        url: "https://hafeezbaig.in/#contact",
+        icon: Bug,
     },
     {
-        title: "Settings",
-        url: "#",
-        icon: Settings,
+        title: "Example Wireframe",
+        url: "/wireframe-example-1.jpg",
+        icon: ImageIcon,
     },
 ]
 
