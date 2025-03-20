@@ -42,9 +42,9 @@ export default function Home() {
 
         <div className="flex items-center gap-4">
           {/* Dark Mode Toggle */}
-          <button onClick={toggleDarkMode} className="p-2 rounded-md bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+          {/* <button onClick={toggleDarkMode} className="p-2 rounded-md bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
             {darkMode ? <MdLightMode className="text-yellow-400 size-6" /> : <MdDarkMode className="text-gray-800 size-6 dark:text-gray-300" />}
-          </button>
+          </button> */}
 
           {/* Authentication/Profile */}
           {!user?.user?.email ? (

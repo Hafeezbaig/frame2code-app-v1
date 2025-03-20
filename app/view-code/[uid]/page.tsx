@@ -8,6 +8,7 @@ import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import SelectionDetails from '../_components/SelectionDetails';
 import CodeEditor from '../_components/CodeEditor';
+import ProtectedRoute from '@/components/ProtectedRoute' // Import ProtectedRoute
 
 export interface RECORD {
     id: number;
@@ -19,7 +20,6 @@ export interface RECORD {
 }
 
 function ViewCode() {
-
     const { uid } = useParams();
     const [loading, setLoading] = useState(false);
     const [codeResp, setCodeResp] = useState('');
@@ -78,28 +78,24 @@ function ViewCode() {
         }
         setIsReady(true);
         setLoading(false);
-
     }
 
     return (
-        <div>
+        <ProtectedRoute> {/* Wrap content inside ProtectedRoute */}
             <div>
                 <AppHeader hideSidebar={true} />
                 <div className='grid grid-cols-1 md:grid-cols-5 p-5 gap-10'>
                     <div>
                         {/* Selection Details */}
                         <SelectionDetails record={record} />
-
                     </div>
                     <div className='col-span-4'>
                         {/* Code Editor */}
                         <CodeEditor codeResp={codeResp} isReady={isReady} />
-
                     </div>
                 </div>
             </div>
-
-        </div>
+        </ProtectedRoute>
     )
 }
 
