@@ -24,6 +24,7 @@ function ViewCode() {
     const [loading, setLoading] = useState(false);
     const [codeResp, setCodeResp] = useState('');
     const [record, setRecord] = useState<RECORD>();
+    const [isReady, setIsReady] = useState(false);
 
     useEffect(() => {
         uid && GetRecordInfo();
@@ -36,7 +37,7 @@ function ViewCode() {
         const resp = result?.data;
         setRecord(result.data)
         if (resp?.code == null) {
-            // GenerateCode(resp);
+            GenerateCode(resp);
         }
         if (resp?.error) {
             console.log("No Record Found");
@@ -71,10 +72,11 @@ function ViewCode() {
                 break;
             }
 
-            const text = (decoder.decode(value)).replace('```typescript', '').replace('```', '');
+            const text = (decoder.decode(value)).replace('javascript', '').replace('```', '').replace('jsx', '');
             setCodeResp((prev) => prev + text);
             console.log(text);
         }
+        setIsReady(true);
         setLoading(false);
 
     }
@@ -91,7 +93,7 @@ function ViewCode() {
                     </div>
                     <div className='col-span-4'>
                         {/* Code Editor */}
-                        <CodeEditor />
+                        <CodeEditor codeResp={codeResp} isReady={isReady} />
 
                     </div>
                 </div>

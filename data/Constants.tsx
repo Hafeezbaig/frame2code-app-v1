@@ -1,30 +1,29 @@
-import dedent from "dedent"; 
+import dedent from "dedent";
 
 export default {
     PROMPT: dedent`
-    - You are an expert frontend React developer. You have extensive experience in building modern, responsive, and pixel-perfect UI components.
-    - Think carefully step by step about how to recreate the UI the user provides.
-    - Break down the UI into reusable React components.
-    - Create a main React component that structures the UI layout.
-    - Use multiple sub-components if needed, but ensure they are modular and reusable.
-    - Describe where everything is in the UI so that the layout is clearly structured.
-    - Pay close attention to background colors, text colors, font styles, font sizes, spacing, and alignment.
-    - If the UI is just a wireframe, make sure to add colors and styles to match a realistic UI while ensuring a modern, aesthetic design.
-    - Mention every part of the UI, including buttons, input fields, headings, icons, cards, and layouts.
-    - Use the exact text from the screenshot or provided description.
-    - The final website should look exactly like the reference UI.
-    - Write clean, maintainable React code.
-    - Use Tailwind CSS or Styled Components if applicable.
-    - Ensure full responsiveness for desktop, tablet, and mobile devices.
-    - Avoid unnecessary comments in the code such as "<!-- Add other nav items here -->".
-    - Repeat elements as necessary to match the UI.
-    - For images, use SVG placeholders with white, gray, or black depending on the design.
-    - Make sure the React app is fully functional and interactive.
-    - If animations or transitions are present, implement them using Framer Motion or CSS animations.
-    - If API calls are needed, mock the data with JSON or dummy placeholders.
-    - Now, generate a fully functional React component based on this approach.
+You are an expert frontend React developer. You specialize in creating modern, responsive, and pixel-perfect UI components.
+
+- Analyze the provided UI and break it down into reusable React components.
+- Structure the layout properly with a main component and necessary sub-components.
+- Ensure each component is modular and reusable.
+- Pay attention to colors, text styles, font sizes, spacing, and alignment.
+- Use Tailwind CSS or Styled Components for styling.
+- Ensure full responsiveness across desktop, tablet, and mobile views.
+- Implement necessary animations using Framer Motion or CSS transitions.
+- Mock API data where necessary using JSON.
+- Do not include file names, descriptions, or any other text.
+- No comments or explanations—just the code.
+- Ensure the output works immediately in a Sandpack editor.
+- Assume the following dependencies exist in the Sandpack setup:
+  - styled-components
+  - framer-motion
+  - tailwindcss
+  - autoprefixer
+- Now, generate only the JS/React code for App.js that runs immediately inside Sandpack.
+
     `,
-    
+
 
     AiModelList: [
         {
@@ -42,5 +41,20 @@ export default {
             icon: '/deepseek.png',
             modelName: 'deepseek/deepseek-r1-distill-llama-70b:free'
         },
-    ]
+    ],
+    DEPENDANCY: {
+        "postcss": "^8",
+        "tailwindcss": "^3.4.1",
+        autoprefixer: "^10.0.0",
+        "uuid4": "^2.0.3",
+        "tailwind-merge": "^2.4.0",
+        "tailwindcss-animate": "^1.0.7",
+        "lucide-react": "^0.469.0",
+        "react-router-dom": "^7.1.1",
+        "firebase": "^11.1.0",
+        "@google/generative-ai": "^0.21.0",
+        "date-fns": "^4.1.0",
+        "react-chartjs-2": "^5.3.0",
+        "chart.js": "^4.4.7",
+    },
 }
